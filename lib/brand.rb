@@ -3,7 +3,6 @@ class Brand < ActiveRecord::Base
   has_and_belongs_to_many(:stores)
   validates(:name, {:presence => true, :length => {:maximum => 100}})
   before_save(:capitalize_name)
-  # before_save(:convert_price)
   scope(:new_brand, -> do
     where({:new_brand => true})
   end)
