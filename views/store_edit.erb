@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <h1>Edit <%= @store.name %> information</h1><br>
+  <form action="/stores/view/<%= @store.id %>/edit" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input id="name" name="name" type="text" value="<%= @store.name %>">
+    </div>
+    <div class="form-group">
+      <label for="street">Street: </label>
+      <input id="street" name="street" type="text" required value="<%= @store.street %>">
+    </div>
+    <div class="form-group">
+      <label for="city">City: </label>
+      <input id="city" name="city" type="text" required value="<%= @store.city %>">
+    </div>
+    <div class="form-group">
+      <label for="state">State: </label>
+      <input id="state" name="state" type="text" required value="<%= @store.state %>">
+    </div>
+    <div class="form-group">
+      <label for="zipcode">Zipcode: </label>
+      <input id="zipcode" name="zipcode" type="number" required value="<%= @store.zipcode %>">
+    </div>
+    <button type="submit" class="btn bt-custom">Save changes</button>
+  </form>
+
+  <% if (@errors != nil ) %>
+    <h3>Oops there were some errors:</h3>
+    <ul>
+      <li><%= @errors %></li>
+    </ul>
+  <% end %>
+</div>

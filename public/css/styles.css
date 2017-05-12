@@ -20,9 +20,20 @@
 
 .nav-list a:hover {
   background-color: #FF8C66;
-  /*#4CAF50*/
 }
 
 .bt-custom {
   background-color: #5778FF;
+}
+
+/*.bt-delete {
+  background-color: #FFC929;
+}*/
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: #f1f2f4;
 }

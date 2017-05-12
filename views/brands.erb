@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <h1>Below are the list of new brands</h1><br>
+  <% if @brands.any?() %>
+    <% @brands.each() do |brand| %>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-block">
+            <h4 class="card-title"><%= brand.name() %></h4>
+            <p class="card-text"><b>$</b><%= brand.convert_price() %></p>
+            <a href="/brands/view/<%= brand.id() %>" class="btn btn-primary">Check details</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h4>No brands yet</h4>
+  <% end %>
+</div>

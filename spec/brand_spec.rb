@@ -31,9 +31,15 @@ describe(Brand) do
   end
 
   it("append '.00' if the price is whole number") do
-    test_brand1 = Brand.create({:name => "addidas", :quantity => 20 ,:new_brand => true, :sold_out => false, :price => 50})
-    expect(test_brand1.price()).to eq(50.00)
+    test_brand1 = Brand.create({:name => "addidas", :quantity => 20 ,:new_brand => true, :sold_out => false, :price => 50.60})
+    expect(test_brand1.convert_price()).to eq("50.60")
   end
 
+  describe('.duplicate_check') do
+    it("check for duplicate") do
+      test_brand1 = Brand.create({:name => "addidas", :quantity => 20 ,:new_brand => true, :sold_out => false, :price => 50})
+      expect(Brand.duplicate_check("addidas")).to eq(test_brand1.id)
+    end
+  end
 
 end

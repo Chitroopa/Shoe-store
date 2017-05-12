@@ -70,8 +70,22 @@
       <label for="zipcode">Zipcode: </label>
       <input id="zipcode" name="zipcode" type="number" required>
     </div>
-    <button type="submit" class="btn bt-custom">Submit</button>
+    <p>Select shoe brands for this store</p>
+    <% if @brands.any?() %>
+      <% @brands.each() do |brand| %>
+        <div class="checkbox form-check-inline">
+          <label class="form-check-label">
+            <input type="checkbox" name="brand_ids[]" value="<%= brand.id() %>"> <%= brand.name()%>
+          </label>
+        </div>
+      <% end  %>
+    <% else %>
+      <p>No brands availabe, please add brand</p>
+    <% end %>
+
+    <br><br><button type="submit" class="btn bt-custom">Submit</button>
   </form>
+
 
   <% if (@errors != nil ) && (@errors.errors().any?()) %>
     <h3>Oops there were some errors:</h3>

@@ -8,18 +8,24 @@ class Brand < ActiveRecord::Base
     where({:new_brand => true})
   end)
 
+  def self.duplicate_check(name)
+    brand_id = 0
+    Brand.all.each do |brand|
+      if brand.name.gsub(/[^a-z," "]/i, '').downcase() == name.gsub(/[^a-z," "]/i, '').downcase()
+        brand_id = brand.id
+      end
+    end
+    brand_id
+  end
+
+  def convert_price
+    return sprintf "%.2f", self.price
+  end
+
 private
 
   def capitalize_name
     self.name=(name().capitalize())
   end
-
-#   define_method(:convert_price) do
-#     price_string = (self.price).to_s
-#     if price_string.include?('.0')
-#       self.price=(price_string.concat('0')).to_i()
-#     end
-# binding.pry
-#   end
 
 end

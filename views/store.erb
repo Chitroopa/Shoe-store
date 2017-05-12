@@ -1,0 +1,47 @@
+<div class="jumbotron">
+  <h1><%= @store.name %></h1><br>
+  <h4>Located at:</h4><br>
+  <ul>
+    <li><%= @store.street %></li>
+    <li><%= @store.city %>, <%= @store.state %>, <%= @store.zipcode %></li>
+  </ul>
+  <h4>Brands sold</h4>
+  <% if @store.brands.any?() %>
+    <% @store.brands.each() do |brand| %>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-block">
+            <h3 class="card-title"><%= brand.name() %></h3>
+            <% if brand.new_brand() == true %>
+              <p class="card-text">New Brand</p>
+            <% else %>
+              <p class="card-text">Exsisting Brand</p>
+            <% end %>
+            <h4 class="card-text"><b>$</b><%= brand.convert_price() %></h4>
+            <% if brand.sold_out() == true %>
+              <p class="btn btn-danger">Sold out</p>
+            <% else %>
+              <p class="btn btn-primary">Available</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h4>No brands yet</h4>
+  <% end %>
+  <br>
+  <div class="row">
+    <div class="col-md-3">
+      <form action="/stores/view/<%= @store.id%>/edit" method="post">
+        <button type="submit" class="btn bt-custom">Edit store</button>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <form action="/stores/view/<%= @store.id%>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit" class="btn bg-danger">Delete <%= @store.name %></button>
+      </form>
+    </div>
+  </div>
+</div>

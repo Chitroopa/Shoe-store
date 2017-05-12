@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <h1>Add new Brand</h1><br>
+  <h4>Please fill the below form</h4>
+  <form action="/brands/add" method="post">
+    <div class="form-group">
+      <label for="name">Brand name: </label>
+      <input id="name" name="name" type="text">
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input id="quantity" name="quantity" type="text" required>
+    </div>
+    <div class="form-group">
+      <label for="new_brand">New or Existing?: </label>
+      <select id="new_brand" name="new_brand" required>
+        <option value="true">New Brand</option>
+        <option value="false">Existing Brand</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sold_out">Available for sale: </label>
+      <select id="sold_out" name="sold_out" required>
+        <option value="false">Available</option>
+        <option value="true">Not Available</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="price">Price $:</label>
+      <input id="price" name="price" type="text" required>
+    </div>
+    <button type="submit" class="btn bt-custom">Submit</button>
+  </form>
+
+  <% if (@errors != nil ) && (@errors.errors().any?()) %>
+    <h3>Oops there were some errors:</h3>
+    <ul>
+      <% @errors.errors().full_messages().each() do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
