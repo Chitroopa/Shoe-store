@@ -44,10 +44,11 @@
       <br>
       <button type="submit" class="btn bg-danger">Remove brands</button>
     </form>
-    
+
     <form action="/stores/view/<%= @store.id() %>/edit/brands/add" method="post">
       <input type="hidden" name="_method" value="patch">
-      <% @brands.each() do |brand| %>
+      <% @available_brands = @brands - @store.brands %>
+      <% @available_brands.each() do |brand| %>
         <div class="checkbox form-check-inline">
           <label class="form-check-label">
             <input type="checkbox" name="brand_ids[]" value="<%= brand.id() %>"> <%= brand.name()%>
