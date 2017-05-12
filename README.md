@@ -41,7 +41,8 @@ $ psql
 
 Create databases:
 ```
-rake db:create
+$rake db:create
+$rake db:migrate
 ```
 
 Start the webserver:
