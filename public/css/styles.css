@@ -1,0 +1,28 @@
+#nav-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #5778FF;
+}
+
+.nav-list {
+  float: left;
+}
+
+.nav-list a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-list a:hover {
+  background-color: #FF8C66;
+  /*#4CAF50*/
+}
+
+.bt-custom {
+  background-color: #5778FF;
+}

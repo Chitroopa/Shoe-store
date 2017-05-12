@@ -19,7 +19,7 @@ describe(Store) do
     end
   end
 
-  describe('#list all the brands') do
+  describe('#brands') do
     it("list all the brands in the store") do
       test_store = Store.create({:name => "zappos shoes", :street => "123, 3rd Ave", :city =>"Seattle", :state => 'WA', :zipcode => 98034})
       test_brand = test_store.brands.create({:name => "addidas", :quantity => 20 ,:new_brand => true, :sold_out => false, :price => 50.89 })
