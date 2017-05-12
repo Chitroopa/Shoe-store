@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <h1><%= @brand.name %></h1>
+  <p><b>Quantity: </b><%= @brand.quantity() %></p>
+  <% if @brand.new_brand() == true %>
+    <p><b>Brand type: </b>New Brand</p>
+  <% else %>
+    <p><b>Brand type: </b>Exsisting Brand</p>
+  <% end %>
+  <p><b>Price: $</b><%= @brand.convert_price() %></p>
+  <% if @brand.sold_out() == true %>
+    <p><b>Availablity status: </b>Sold out</p>
+  <% else %>
+    <p><b>Availablity status: </b>Available</p>
+  <% end %>
+  <h1>List of available stores</h1><br>
+  <% if @brand.stores.any?() %>
+    <ul>
+      <% @brand.stores.each() do |store| %>
+        <li><a href="/stores/view/<%= store.id() %>"><%= store.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h4>Not available in any store</h4>
+  <% end %>
+</div>

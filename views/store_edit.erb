@@ -22,8 +22,42 @@
       <label for="zipcode">Zipcode: </label>
       <input id="zipcode" name="zipcode" type="number" required value="<%= @store.zipcode %>">
     </div>
+    <p>Available brands at this store</p>
+    <ul>
+      <% @store.brands.each() do |brand| %>
+        <li><%= brand.name %></li>
+      <% end  %>
+    </ul>
     <button type="submit" class="btn bt-custom">Save changes</button>
   </form>
+
+  <div class="edit-brand">
+    <form action="/stores/view/<%= @store.id() %>/edit/brands/add" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <% @store.brands.each() do |brand| %>
+        <div class="checkbox form-check-inline">
+          <label class="form-check-label">
+            <input type="checkbox" name="brand_ids[]" value="<%= brand.id() %>"> <%= brand.name()%>
+          </label>
+        </div>
+      <% end  %>
+      <br>
+      <button type="submit" class="btn bg-danger">Remove brands</button>
+    </form>
+    
+    <form action="/stores/view/<%= @store.id() %>/edit/brands/add" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <% @brands.each() do |brand| %>
+        <div class="checkbox form-check-inline">
+          <label class="form-check-label">
+            <input type="checkbox" name="brand_ids[]" value="<%= brand.id() %>"> <%= brand.name()%>
+          </label>
+        </div>
+      <% end  %>
+      <br>
+      <button type="submit" class="btn bg-success">Add brands</button>
+    </form>
+  </div>
 
   <% if (@errors != nil ) %>
     <h3>Oops there were some errors:</h3>

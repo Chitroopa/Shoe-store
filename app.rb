@@ -25,6 +25,7 @@ end
 get '/stores/view/:store_id/edit' do
   store_id = params[:store_id]
   @store = Store.find(store_id)
+  @brands = Brand.all()
   erb(:store_edit)
 end
 
@@ -35,6 +36,12 @@ end
 
 get '/brands/add' do
   erb(:brand_form)
+end
+
+get '/brands/view/:brand_id' do
+  brand_id = params[:brand_id]
+  @brand = Brand.find(brand_id)
+  erb(:brand)
 end
 
 post '/stores/add' do
@@ -84,6 +91,7 @@ end
 post '/stores/view/:store_id/edit' do
   store_id = params[:store_id]
   @store = Store.find(store_id)
+  @brands = Brand.all()
   erb(:store_edit)
 end
 
@@ -104,9 +112,30 @@ patch '/stores/view/:store_id/edit' do
   end
 end
 
+patch '/stores/view/:store_id/edit/brands/add' do
+  store_id = params[:store_id]
+  @store = Store.find(store_id)
+  brand_ids = params[:brand_ids]
+  brand_ids.each do |brand_id|
+    brand = Brand.find(brand_id)
+    @store.brands.push(brand)
+  end
+  redirect '/stores/view/'+ store_id.to_s() +'/edit'
+end
+
 delete '/stores/view/:store_id/delete' do
   store_id = params[:store_id]
   @store = Store.find(store_id)
   @store.delete()
   redirect '/'
+end
+
+delete '/stores/view/:store_id/edit/brands/add' do
+  store_id = params[:store_id]
+  @store = Store.find(store_id)
+  brand_ids = params[:brand_ids]
+  brand_ids.each do |brand|
+    @store.brands.delete(brand)
+  end
+  redirect '/stores/view/'+ store_id.to_s() +'/edit'
 end
