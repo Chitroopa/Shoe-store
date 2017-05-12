@@ -27,4 +27,11 @@ describe(Store) do
     end
   end
 
+  describe('.duplicate_check') do
+    it("check for duplicate") do
+      test_store1 = Store.create({:name => "zappos shoes", :street => "123, 3rd Ave", :city =>"Seattle", :state => 'WA', :zipcode => 98034})
+      expect(Store.duplicate_check('zappos shoes')).to eq(test_store1.id)
+    end
+  end
+
 end

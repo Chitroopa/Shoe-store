@@ -21,11 +21,17 @@ post '/stores/add' do
   city = params[:city]
   state = params[:state]
   zipcode = params[:zipcode]
-  new_store = Store.new({:name => name, :street => street, :city => city, :state => state, :zipcode => zipcode})
-  if new_store.save()
-    redirect("/")
+  if Store.duplicate_check(name) == 0
+    new_store = Store.new({:name => name, :street => street, :city => city, :state => state, :zipcode => zipcode})
+    if new_store.save()
+      redirect("/")
+    else
+      @errors = new_store
+      erb(:store_form)
+    end
   else
-    @errors = new_store
-    erb(:store_form)
+    exsitsing_store = Store.find(Store.duplicate_check(name))
+    exsitsing_store.update({:name => name, :street => street, :city => city, :state => state, :zipcode => zipcode})
+    redirect("/")
   end
 end

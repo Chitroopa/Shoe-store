@@ -3,9 +3,20 @@ class Store < ActiveRecord::Base
   validates(:name, {:presence => true, :length => {:maximum => 100}})
   before_save(:capitalize_name)
 
+  def self.duplicate_check(name)
+    store_id = 0
+    Store.all.each do |store|
+      if store.name.gsub(/[^a-z," "]/i, '').downcase() == name.gsub(/[^a-z," "]/i, '').downcase()
+        store_id = store.id
+      end
+    end
+    store_id
+  end
+
 private
 
-  define_method(:capitalize_name) do
+  def capitalize_name
     self.name=(name().capitalize())
   end
+
 end

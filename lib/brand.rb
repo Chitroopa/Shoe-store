@@ -10,7 +10,7 @@ class Brand < ActiveRecord::Base
 
 private
 
-  define_method(:capitalize_name) do
+  def capitalize_name
     self.name=(name().capitalize())
   end
 
