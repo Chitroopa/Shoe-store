@@ -12,7 +12,7 @@
   <% else %>
     <p><b>Availablity status: </b>Available</p>
   <% end %>
-  <h1>List of available stores</h1><br>
+  <h1>Available in below stores</h1><br>
   <% if @brand.stores.any?() %>
     <ul>
       <% @brand.stores.each() do |store| %>
